@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TextRecruit Challenge part 1</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <style type="text/css">
+    table, tr, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    td {
+      width: 35px;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-app="app">
+
+    <div id='clock' ng-controller="clockController">
+      <h3>Time elapsed: </h3>
+      <p>{{ time }}</p>
+    </div>
+
+    <hr/>
+
+    <div id='table' ng-controller="tableController">
+      <h3>Data: </h3>
+      <table>
+        <tr>
+          <td style='font-weight: bold; color: red'>recv</td>
+          <td ng-repeat="key in keys_m">{{ key }}</td>
+        </tr>
+        <tr ng-repeat="key in keys_c">
+          <td>{{ key }}</td>
+          <td ng-repeat="value in data[key] | parse track by $index">
+            {{ value }}
+          </td>
+          <td ng-repeat="blank in getBlanks(data, key) track by $index" style='color: gray;'>
+            {{ blank }}
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+<script src="app.js"></script>
+</body>
+</html>
